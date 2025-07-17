@@ -1,0 +1,42 @@
+﻿@model IEnumerable<QuanLyGiaiCauLong.Models.DoiTuyen>
+
+@{
+    ViewData["Title"] = "DanhSachDoiTuyen";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>DanhSachDoiTuyen</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TenDoi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HLVTruong)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenDoi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HLVTruong.HoTen)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MaDoi">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MaDoi">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MaDoi">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

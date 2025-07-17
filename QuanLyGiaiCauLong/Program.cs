@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using QuanLyGiaiCauLong.Interfaces;
+using QuanLyGiaiCauLong.Models;
+
 namespace QuanLyGiaiCauLong
 {
     public class Program
@@ -8,7 +12,16 @@ namespace QuanLyGiaiCauLong
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped<BadmintonDbContext>();
+            builder.Services.AddScoped<IBadmintonRepository, EFBadmintonRepository>();
+            builder.Services.AddScoped<EFBadmintonRepository>();
 
+
+            // Register the DbContext with the connection string
+            var connectionString = builder.Configuration.GetConnectionString("BadmintonDb");
+
+            builder.Services.AddDbContext<BadmintonDbContext>(options =>
+                options.UseSqlServer(connectionString));
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

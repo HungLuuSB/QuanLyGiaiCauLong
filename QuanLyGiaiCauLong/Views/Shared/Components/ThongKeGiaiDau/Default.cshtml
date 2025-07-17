@@ -1,0 +1,21 @@
+﻿@model List<QuanLyGiaiCauLong.ViewModels.ThongKeVDVGiaiDauVM>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Loại Giải</th>
+            <th>Tổng Vận Động Viên</th>
+            <th>Tuổi Trung Bình</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.LoaiGiai</td>
+                <td>@item.TongSoVanDongVien</td>
+                <td>@Math.Round(item.TuoiTrungBinh, 1)</td>
+            </tr>
+        }
+    </tbody>
+</table>
